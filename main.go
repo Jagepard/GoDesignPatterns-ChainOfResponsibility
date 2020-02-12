@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 	chain := Chain{chain: make(map[int]Handler)}
 
@@ -9,9 +7,11 @@ func main() {
 	warningHandler := Handler{priority: 2, name: "WarningHandler"}
 	errorHandler := Handler{priority: 3, name: "ErrorHandler"}
 
-	chain.addToChain(noticeHandler)
-	chain.addToChain(warningHandler)
-	chain.addToChain(errorHandler)
+	addToChain(chain, noticeHandler)
+	addToChain(chain, warningHandler)
+	addToChain(chain, errorHandler)
 
-	fmt.Println(chain.chain)
+	execute(chain, 1)
+	execute(chain, 2)
+	execute(chain, 3)
 }
