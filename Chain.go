@@ -1,6 +1,5 @@
 package main
 
-import "fmt"
 import "errors"
 
 // Chain is ...
@@ -10,21 +9,18 @@ type Chain struct {
 
 func (chain Chain) addToChain(handler Handler) {
 	if val, ok := chain.chain[handler.priority]; ok {
-		fmt.Println(errors.New(val.name + ":already exists"))
-		panic("Wrong argument!")
+		panic(errors.New(val.name + " :already exists"))
 	}
 
 	chain.chain[handler.priority] = handler
 }
 
 func (chain Chain) execute(handlerPriority int) {
-	if handler, ok := chain.chain[handlerPriority]; ok {
-		for i := 1; i <= handler.priority; i++ {
-			fmt.Println(chain.chain[i].name)
-		}
-
-		return
+	if handler, ok := chain.chain[handlerPriority]; !ok {
+		panic(errors.New(handler.name + " :does not exist in the chain"))
 	}
 
-	// fmt.Println(errors.New(handlerPriority + ": does not exist in the chain"))
+	for i := 1; i <= handlerPriority; i++ {
+		exec(chain.chain[i])
+	}
 }

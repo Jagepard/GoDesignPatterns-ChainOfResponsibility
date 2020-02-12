@@ -3,13 +3,13 @@ package main
 func main() {
 	chain := Chain{chain: make(map[int]Handler)}
 
-	noticeHandler := Handler{priority: 1, name: "NoticeHandler"}
-	warningHandler := Handler{priority: 2, name: "WarningHandler"}
-	errorHandler := Handler{priority: 3, name: "ErrorHandler"}
+	notice := NoticeHandler{Handler{priority: 1, name: "NoticeHandler"}}
+	warning := WarningHandler{Handler{priority: 2, name: "WarningHandler"}}
+	error := ErrorHandler{Handler{priority: 3, name: "ErrorHandler"}}
 
-	addToChain(chain, noticeHandler)
-	addToChain(chain, warningHandler)
-	addToChain(chain, errorHandler)
+	addToChain(chain, notice.Handler)
+	addToChain(chain, warning.Handler)
+	addToChain(chain, error.Handler)
 
 	execute(chain, 1)
 	execute(chain, 2)
