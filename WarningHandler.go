@@ -5,7 +5,21 @@
 
 package main
 
+import "fmt"
+
 // WarningHandler is ...
 type WarningHandler struct {
-	Handler
+	name string
+	next HandlerInterface
+}
+
+func (W *WarningHandler) execute() {
+	fmt.Println(W.name)
+	if W.next != nil {
+		W.next.execute()
+	}
+}
+
+func (W *WarningHandler) setNext(next HandlerInterface) {
+	W.next = next
 }

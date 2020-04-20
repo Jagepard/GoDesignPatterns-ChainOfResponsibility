@@ -6,17 +6,11 @@
 package main
 
 func main() {
-	chain := Chain{chain: make(map[int]Handler)}
+	notice := &NoticeHandler{name: "NoticeHandler"}
+	warning := &WarningHandler{name: "WarningHandler"}
+	error := &ErrorHandler{name: "ErrorHandler"}
 
-	notice := NoticeHandler{Handler{priority: 1, name: "NoticeHandler"}}
-	warning := WarningHandler{Handler{priority: 2, name: "WarningHandler"}}
-	error := ErrorHandler{Handler{priority: 3, name: "ErrorHandler"}}
-
-	addToChain(chain, notice.Handler)
-	addToChain(chain, warning.Handler)
-	addToChain(chain, error.Handler)
-
-	execute(chain, 1)
-	execute(chain, 2)
-	execute(chain, 3)
+	notice.setNext(warning)
+	warning.setNext(error)
+	notice.execute()
 }
