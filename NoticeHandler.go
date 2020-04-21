@@ -20,6 +20,7 @@ func (N *NoticeHandler) execute() {
 	}
 }
 
-func (N *NoticeHandler) setNext(next HandlerInterface) {
+func (N *NoticeHandler) setNext(next HandlerInterface) HandlerInterface {
 	N.next = next
+	return next
 }
