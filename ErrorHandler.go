@@ -20,6 +20,7 @@ func (E *ErrorHandler) execute() {
 	}
 }
 
-func (E *ErrorHandler) setNext(next HandlerInterface) {
+func (E *ErrorHandler) setNext(next HandlerInterface) HandlerInterface {
 	E.next = next
+	return next
 }

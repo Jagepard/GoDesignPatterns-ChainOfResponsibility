@@ -8,5 +8,5 @@ package main
 // HandlerInterface is ...
 type HandlerInterface interface {
 	execute()
-	setNext(HandlerInterface)
+	setNext(HandlerInterface) HandlerInterface
 }

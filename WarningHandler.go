@@ -20,6 +20,7 @@ func (W *WarningHandler) execute() {
 	}
 }
 
-func (W *WarningHandler) setNext(next HandlerInterface) {
+func (W *WarningHandler) setNext(next HandlerInterface) HandlerInterface {
 	W.next = next
+	return next
 }

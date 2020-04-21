@@ -10,7 +10,6 @@ func main() {
 	warning := &WarningHandler{name: "WarningHandler"}
 	error := &ErrorHandler{name: "ErrorHandler"}
 
-	notice.setNext(warning)
-	warning.setNext(error)
+	notice.setNext(warning).setNext(error)
 	notice.execute()
 }
