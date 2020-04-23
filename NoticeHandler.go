@@ -13,10 +13,15 @@ type NoticeHandler struct {
 	next HandlerInterface
 }
 
-func (N *NoticeHandler) execute() {
-	fmt.Println(N.name)
+func (N *NoticeHandler) execute(request string) {
+
+	if request == N.name {
+		fmt.Println(N.name)
+		return
+	}
+
 	if N.next != nil {
-		N.next.execute()
+		N.next.execute(request)
 	}
 }
 

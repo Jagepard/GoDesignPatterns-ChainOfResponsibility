@@ -7,6 +7,6 @@ package main
 
 // HandlerInterface is ...
 type HandlerInterface interface {
-	execute()
+	execute(string)
 	setNext(HandlerInterface) HandlerInterface
 }

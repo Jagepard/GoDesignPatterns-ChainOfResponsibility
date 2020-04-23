@@ -13,10 +13,15 @@ type ErrorHandler struct {
 	next HandlerInterface
 }
 
-func (E *ErrorHandler) execute() {
-	fmt.Println(E.name)
+func (E *ErrorHandler) execute(request string) {
+
+	if request == E.name {
+		fmt.Println(E.name)
+		return
+	}
+
 	if E.next != nil {
-		E.next.execute()
+		E.next.execute(request)
 	}
 }
 

@@ -7,9 +7,9 @@ package main
 
 func main() {
 	notice := &NoticeHandler{name: "NoticeHandler"}
-	warning := &WarningHandler{name: "WarningHandler"}
-	error := &ErrorHandler{name: "ErrorHandler"}
 
-	notice.setNext(warning).setNext(error)
-	notice.execute()
+	notice.setNext(&WarningHandler{name: "WarningHandler"}).setNext(&ErrorHandler{name: "ErrorHandler"})
+	notice.execute("NoticeHandler")
+	notice.execute("WarningHandler")
+	notice.execute("ErrorHandler")
 }
