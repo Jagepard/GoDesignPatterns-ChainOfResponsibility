@@ -13,10 +13,15 @@ type WarningHandler struct {
 	next HandlerInterface
 }
 
-func (W *WarningHandler) execute() {
-	fmt.Println(W.name)
+func (W *WarningHandler) execute(request string) {
+
+	if request == W.name {
+		fmt.Println(W.name)
+		return
+	}
+
 	if W.next != nil {
-		W.next.execute()
+		W.next.execute(request)
 	}
 }
 
